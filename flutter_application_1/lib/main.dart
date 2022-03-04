@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
             'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.accessToken.token}'));
 
         var profile = json.decode(graphResponse.body);
-        debugPrint(profile.toString());
+        print(profile.toString());
 
         onLoginStatusChanged(true, profileData: profile);
         break;
@@ -126,13 +126,13 @@ class _LoginPageState extends State<LoginPage> {
   _logout() async {
     await facebookLogin.logOut();
     onLoginStatusChanged(false);
-    debugPrint("Logged out");
+    print("Logged out");
   }
 
   Future<void> onButtonTap(String msg, String url) async {
     String? response;
     final FlutterShareMe flutterShareMe = FlutterShareMe();
     response = await flutterShareMe.shareToFacebook(url: url, msg: msg);
-    debugPrint(response);
+    print(response);
   }
 }
